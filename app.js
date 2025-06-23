@@ -5,13 +5,13 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3000;
 const SECRET_KEY = 'power up the bass cannon';
 
 mongoose.set('strictQuery', false);
 
-//const uri =  "mongodb://root:7SxJ9o2oaYUJaPd89FY2ebQq@172.21.177.126:27017";
-const uri = "mongodb://mongodb:27017";
+const uri =  "mongodb://root:7SxJ9o2oaYUJaPd89FY2ebQq@172.21.177.126:27017";
+// const uri = "mongodb://mongodb:27017";
 mongoose.connect(uri,{'dbName':'SocialDB'});
 
 const User = mongoose.model('User', { username: String, email: String, password: String });
@@ -86,8 +86,8 @@ app.post('/register', async (req, res) => {
         req.session.token = token;
 
         // Respond with success message
-        //res.send({"message":`The user ${username} has been added`});
-        res.redirect(`/index?username=${newUser.username}`);
+        res.send({"message":`The user ${username} has been added`});
+        // res.redirect(`/index?username=${newUser.username}`);
     } catch (error) {
         console.error(error);
         // Handle server errors
@@ -110,8 +110,8 @@ app.post('/login', async (req, res) => {
         req.session.token = token;
 
         // Respond with a success message
-        //res.send({"message":`${user.username} has logged in`});
-        res.redirect(`/index?username=${user.username}`);
+        res.send({"message":`${user.username} has logged in`});
+        // res.redirect(`/index?username=${user.username}`);
     } catch (error) {
         console.error(error);
         // Handle server errors

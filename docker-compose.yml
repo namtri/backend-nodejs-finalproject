@@ -9,9 +9,9 @@ services:
     build: .
     image: socialapp
     ports:
-      - '3003:3003'
+      - '3000:3000'
     depends_on:
       - mongodb
     environment:
-      PORT: 3003
+      PORT: 3000
       SECRET_KEY: 'your_secret_key'
